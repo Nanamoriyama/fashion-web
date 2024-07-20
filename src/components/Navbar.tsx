@@ -78,7 +78,7 @@ const Navbar = () => {
             <div className="absolute left-0 right-0 bottom-0 h-[2px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
           </li>
           <li className="relative group p-4">
-            <Link href="/bags">BAGS</Link>
+            <Link href="/bags">BAGS-</Link>
             <div className="absolute left-0 right-0 bottom-0 h-[2px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
           </li>
           <li className="relative group p-4">
