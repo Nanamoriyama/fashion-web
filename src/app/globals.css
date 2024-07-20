@@ -1,33 +1,71 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* global.css */
+/* globals.css */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.underline-left {
+  position: relative;
+  display: inline-block;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.underline-left::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: currentColor;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.underline-left:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+* Gradient overlay for blur effect */ .gradient-overlay::after,
+.gradient-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px; /* Adjust the width for a larger blur area */
+  z-index: 1;
+}
+.gradient-overlay::before {
+  left: 0;
+  background: linear-gradient(to right, white, transparent);
+}
+.gradient-overlay::after {
+  right: 0;
+  background: linear-gradient(to left, white, transparent);
+}
+/* global.css */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.gradient-overlay .blur-effect {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
 }
