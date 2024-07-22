@@ -62,6 +62,7 @@ const NewsLetter = () => {
                 { href: "/jewelry", label: "Woman's Fashion Jewelry" },
                 { href: "/kids", label: "Kids & Baby" },
                 { href: "/maison", label: "Maison" },
+                { href: "/jewelry", label: "Jewelry & Timepieces" },
               ].map((item, index) => (
                 <li key={index} className="relative group">
                   <Link

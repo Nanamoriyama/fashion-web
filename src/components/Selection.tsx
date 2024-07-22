@@ -10,7 +10,7 @@ const Selection = () => {
           THE SELECTION
         </h4>
       </div>
-      <div className="bg-white mx-auto grid grid-cols-2 md:grid-cols-4 gap-2 w-full justify-evenly">
+      <div className="bg-white mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-2 w-full justify-evenly">
         <Link href="/woman" className="bg-white text-center">
           <div className="relative w-full h-96 md:h-[320px]">
             <Image
@@ -63,8 +63,8 @@ const Selection = () => {
           <h4 className="-mt-10 md:-mt-9 lg:mt-2 text-center">FOR THE HOME</h4>
         </Link>
       </div>
-      <div className="bg-white pt-6 pb-6 mx-auto flex flex-col md:flex-row flex-wrap w-full justify-evenly">
-        <div className="w-full md:w-1/2 lg:w-1/3 bg-white text-center p-2">
+      <div className="bg-white pt-6 pb-6 mx-auto grid grid-cols-1 md:grid-cols-2 gap-2 lg:flex lg:flex-row lg:justify-evenly lg:gap-6">
+        <div className="w-full bg-white text-center p-2 lg:w-1/2">
           <Link href="/men">
             <div className="relative w-full h-96 md:h-[500px] lg:h-[500px]">
               <Image
@@ -79,7 +79,7 @@ const Selection = () => {
             <p>CD HEART</p>
           </Link>
         </div>
-        <div className="w-full md:w-1/2 lg:w-1/3 bg-white text-center p-2">
+        <div className="w-full bg-white text-center p-2 lg:w-1/2">
           <Link href="/woman">
             <div className="relative w-full h-96 md:h-[500px] lg:h-[500px]">
               <Image
@@ -95,8 +95,8 @@ const Selection = () => {
           </Link>
         </div>
       </div>
-      <div className="bg-white pt-4 pb-6 mx-auto flex flex-col md:flex-row flex-wrap w-full justify-evenly">
-        <div className="w-full md:w-1/2 lg:w-1/3 bg-white text-center">
+      <div className="bg-white pt-4 pb-6 mx-auto grid grid-cols-1 md:grid-cols-2 gap-2 lg:flex lg:flex-row lg:justify-evenly lg:gap-6">
+        <div className="w-full bg-white text-center lg:w-1/2">
           <Link href="/kids">
             <div className="relative w-full h-96 md:h-[500px] lg:h-[500px]">
               <Image
@@ -110,7 +110,7 @@ const Selection = () => {
             </div>
           </Link>
         </div>
-        <div className="w-full mt-10 mb-10 md:w-1/2 lg:w-1/3 bg-white text-center p-2 flex items-center justify-center">
+        <div className="w-full mt-10 mb-10 md:mt-0 md:mb-0 bg-white text-center p-2 lg:w-1/2 flex items-center justify-center">
           <Link href="/jewelry">
             <div className="relative w-full">
               <h2 className="mt-4 text-stone-400 text-sm mb-2">

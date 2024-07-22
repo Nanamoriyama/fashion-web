@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { IoIosSend } from "react-icons/io";
 import { FaPlus, FaMinus } from "react-icons/fa";
 
 const Footer = () => {
@@ -11,11 +10,11 @@ const Footer = () => {
   };
 
   return (
-    <>
-      <div className="flex flex-col md:flex-row justify-evenly m-4 mx-3 p-4">
+    <div className="bg-white w-full py-4">
+      <div className="flex flex-col md:flex-row justify-evenly md:space-x-4 m-4 mx-3 p-2">
         {[
           {
-            title: "About us",
+            title: "OUR BOUTIQUES",
             links: [
               { name: "Our company", url: "#our-company" },
               { name: "Sustainability", url: "#sustainability" },
@@ -24,7 +23,7 @@ const Footer = () => {
             ],
           },
           {
-            title: "Customer care",
+            title: "CUSTOMER CARE",
             links: [
               { name: "Return & refunds", url: "#return-refunds" },
               { name: "Track my order", url: "#track-order" },
@@ -33,28 +32,28 @@ const Footer = () => {
             ],
           },
           {
-            title: "Shopping with us",
+            title: "SHOPPING WITH US",
             links: [
               { name: "Delivery information", url: "#delivery-info" },
               { name: "Payment & Security", url: "#payment-security" },
             ],
           },
           {
-            title: "Shop by Product",
+            title: "THE HOUSE OF DIOR",
             links: [
-              { name: "Chairs", url: "#chairs" },
+              { name: "Maison", url: "maison" },
               { name: "Tables", url: "#tables" },
               { name: "Sofas", url: "#sofas" },
               { name: "Lighting", url: "#lighting" },
             ],
           },
         ].map((section, index) => (
-          <div key={index} className="p-2 md:w-auto md:my-6">
+          <div key={index} className="p-2 w-full md:w-auto md:flex-1">
             <div
               className="flex justify-between items-center cursor-pointer md:cursor-default"
               onClick={() => toggleSection(index)}
             >
-              <span className="font-bold">{section.title}</span>
+              <span className="font-sm font-light">{section.title}</span>
               <span className="md:hidden">
                 {openSection === index ? <FaMinus /> : <FaPlus />}
               </span>
@@ -81,7 +80,7 @@ const Footer = () => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

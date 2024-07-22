@@ -17,8 +17,8 @@ const Hero = () => {
         />
       </div>
 
-      <div className="bg-white mx-auto flex flex-col md:flex-row flex-wrap w-full justify-evenly">
-        <div className="w-full md:w-1/2 lg:w-1/3 bg-white text-center p-2">
+      <div className="bg-white mx-auto flex flex-col lg:flex-row flex-wrap w-full justify-evenly">
+        <div className="w-full lg:w-1/2 bg-white text-center p-2">
           <Link href="/men">
             <div className="relative w-full h-96 md:h-[500px] lg:h-[500px]">
               <Image
@@ -34,7 +34,7 @@ const Hero = () => {
             <p>DIOR AND STONE ISLAND</p>
           </Link>
         </div>
-        <div className="w-full md:w-1/2 lg:w-1/3 bg-white text-center p-2">
+        <div className="w-full lg:w-1/2 bg-white text-center p-2">
           <Link href="/woman">
             <div className="relative w-full h-96 md:h-[500px] lg:h-[500px]">
               <Image

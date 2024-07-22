@@ -8,15 +8,10 @@ import Selection from "@/components/Selection";
 export default function Home() {
   return (
     <>
-      <div className="">
-        <Navbar />
-      </div>
-
       <Header />
       <Hero />
       <Selection />
       <NewsLetter />
-      <Footer />
     </>
   );
 }

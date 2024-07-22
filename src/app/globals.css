@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import "react-toastify/dist/ReactToastify.css";
 /* global.css */
 /* globals.css */
 .hide-scrollbar {
@@ -68,4 +70,16 @@
   right: 0;
   pointer-events: none;
   backdrop-filter: blur(4px);
+}
+.slick-prev:before,
+.slick-next:before {
+  color: black;
+}
+
+.slick-dots li button:before {
+  color: black;
+}
+
+.slick-dots li.slick-active button:before {
+  color: black;
 }
