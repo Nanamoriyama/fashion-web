@@ -1,12 +1,39 @@
+// src/app/cart/page.tsx
 "use client";
 
 import React from "react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import CartItemsList from "../../components/CartItemsList";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+);
 
 const Cart: React.FC = () => {
   const cartItems = useSelector((state: any) => state.cartState.cartItems);
+
+  const handleCheckout = async () => {
+    const stripe = await stripePromise;
+
+    const checkoutSession = await axios.post("/api/create-checkout-session", {
+      items: cartItems.map((item: any) => ({
+        name: item.title,
+        price: item.price,
+        quantity: item.amount,
+      })),
+    });
+
+    const result = await stripe?.redirectToCheckout({
+      sessionId: checkoutSession.data.id,
+    });
+
+    if (result?.error) {
+      console.error(result.error.message);
+    }
+  };
 
   return (
     <div className="p-2">
@@ -30,10 +57,7 @@ const Cart: React.FC = () => {
         ) : (
           <button
             className="bg-black text-stone-300 rounded-full w-1/3 font-light text-xs p-4"
-            onClick={() => {
-              // Proceed to checkout logic here
-              alert("Proceed to checkout");
-            }}
+            onClick={handleCheckout}
           >
             PROCEED TO CHECKOUT
           </button>

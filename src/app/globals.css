@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 @import "react-toastify/dist/ReactToastify.css";
-/* global.css */
-/* globals.css */
+
 .hide-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -36,13 +35,13 @@
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-* Gradient overlay for blur effect */ .gradient-overlay::after,
+.gradient-overlay::after,
 .gradient-overlay::before {
   content: "";
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 80px; /* Adjust the width for a larger blur area */
+  width: 80px;
   z-index: 1;
 }
 .gradient-overlay::before {
@@ -53,7 +52,7 @@
   right: 0;
   background: linear-gradient(to left, white, transparent);
 }
-/* global.css */
+
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }

@@ -53,28 +53,28 @@ const Navbar = () => {
             {capitalizeFirstLetter(user.username)}
           </span>
         )}
-        <ul className="flex space-x-1 sm:space-x-2">
+        <ul className="flex space-x-2">
           <li className="relative group">
             <Link href="/wishlist">
-              <CiHeart className="text-2xl w-6 sm:w-8 flex-shrink-0" />
+              <CiHeart className="text-2xl w-6 flex-shrink-0" />
             </Link>
             <div className="absolute left-0 right-0 bottom-0 h-[2px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
           </li>
           <li className="relative group">
             <Link href="/profile">
-              <IoPersonOutline className="text-2xl w-6 sm:w-8 flex-shrink-0" />
+              <IoPersonOutline className="text-2xl w-6 flex-shrink-0" />
             </Link>
             <div className="absolute left-0 right-0 bottom-0 h-[2px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
           </li>
           <li className="relative group">
             <Link href="/cart">
-              <IoBagOutline className="text-2xl w-6 sm:w-8 flex-shrink-0" />
+              <IoBagOutline className="text-2xl w-6 flex-shrink-0" />
             </Link>
             <div className="absolute left-0 right-0 bottom-0 h-[2px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
           </li>
           <li>
             <button onClick={toggleDrawer}>
-              <RxHamburgerMenu className="text-2xl w-6 sm:w-8 flex-shrink-0" />
+              <RxHamburgerMenu className="text-2xl w-6 flex-shrink-0" />
             </button>
           </li>
         </ul>

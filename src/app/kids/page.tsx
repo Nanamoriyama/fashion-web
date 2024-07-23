@@ -71,7 +71,7 @@ const Page = () => {
   return (
     <>
       <div className="flex justify-center">
-        <span className="font-light text-stone-700 mt-6 mb-6">Women</span>
+        <span className="font-light text-stone-700 mt-6 mb-6">Kids & Baby</span>
       </div>
       <div className="flex justify-end ">
         <span className="underline font-light mr-4 text-stone-600">Filter</span>
