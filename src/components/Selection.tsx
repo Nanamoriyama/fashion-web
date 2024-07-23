@@ -10,9 +10,9 @@ const Selection = () => {
           THE SELECTION
         </h4>
       </div>
-      <div className="bg-white mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-2 w-full justify-evenly">
+      <div className="bg-white mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 w-full justify-evenly">
         <Link href="/woman" className="bg-white text-center">
-          <div className="relative w-full h-96 md:h-[320px]">
+          <div className="relative w-full pb-[100%]">
             <Image
               src="/images/herowoman.jpg"
               alt="Woman"
@@ -21,11 +21,11 @@ const Selection = () => {
               className="object-contain"
             />
           </div>
-          <h4 className="-mt-10 md:-mt-9 lg:mt-2 text-center">FOR HER</h4>
+          <h4 className="mt-2 text-center">FOR HER</h4>
         </Link>
 
         <Link href="/men" className="bg-white text-center">
-          <div className="relative w-full h-96 md:h-[320px]">
+          <div className="relative w-full pb-[100%]">
             <Image
               src="/images/heromen.jpg"
               alt="Men"
@@ -34,11 +34,11 @@ const Selection = () => {
               className="object-contain"
             />
           </div>
-          <h4 className="-mt-10 md:-mt-9 lg:mt-2 text-center">FOR HIM</h4>
+          <h4 className="mt-2 text-center">FOR HIM</h4>
         </Link>
 
         <Link href="/kids" className="bg-white text-center">
-          <div className="relative w-full h-96 md:h-[320px]">
+          <div className="relative w-full pb-[100%]">
             <Image
               src="/images/herokids.jpg"
               alt="Kids"
@@ -47,11 +47,11 @@ const Selection = () => {
               className="object-contain"
             />
           </div>
-          <h4 className="-mt-10 md:-mt-9 lg:mt-2 text-center">FOR KIDS</h4>
+          <h4 className="mt-2 text-center">FOR KIDS</h4>
         </Link>
 
         <Link href="/maison" className="bg-white text-center">
-          <div className="relative w-full h-96 md:h-[320px]">
+          <div className="relative w-full pb-[100%]">
             <Image
               src="/images/heromaison.jpg"
               alt="Maison"
@@ -60,13 +60,13 @@ const Selection = () => {
               className="object-contain"
             />
           </div>
-          <h4 className="-mt-10 md:-mt-9 lg:mt-2 text-center">FOR THE HOME</h4>
+          <h4 className="mt-2 text-center">FOR THE HOME</h4>
         </Link>
       </div>
       <div className="bg-white pt-6 pb-6 mx-auto grid grid-cols-1 md:grid-cols-2 gap-2 lg:flex lg:flex-row lg:justify-evenly lg:gap-6">
         <div className="w-full bg-white text-center p-2 lg:w-1/2">
           <Link href="/men">
-            <div className="relative w-full h-96 md:h-[500px] lg:h-[500px]">
+            <div className="relative w-full pb-[100%] md:h-[500px] lg:h-[500px]">
               <Image
                 src="/images/cd-heart.jpg"
                 alt="CD Heart"
@@ -81,7 +81,7 @@ const Selection = () => {
         </div>
         <div className="w-full bg-white text-center p-2 lg:w-1/2">
           <Link href="/woman">
-            <div className="relative w-full h-96 md:h-[500px] lg:h-[500px]">
+            <div className="relative w-full pb-[100%] md:h-[500px] lg:h-[500px]">
               <Image
                 src="/images/cdv-femme.jpg"
                 alt="Cdv-femme"
@@ -98,7 +98,7 @@ const Selection = () => {
       <div className="bg-white pt-4 pb-6 mx-auto grid grid-cols-1 md:grid-cols-2 gap-2 lg:flex lg:flex-row lg:justify-evenly lg:gap-6">
         <div className="w-full bg-white text-center lg:w-1/2">
           <Link href="/kids">
-            <div className="relative w-full h-96 md:h-[500px] lg:h-[500px]">
+            <div className="relative w-full pb-[100%] md:h-[500px] lg:h-[500px]">
               <Image
                 src="/images/visuel.jpg"
                 alt="CD Heart"

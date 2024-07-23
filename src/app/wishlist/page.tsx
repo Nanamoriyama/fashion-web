@@ -1,52 +1,36 @@
 "use client";
-import { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { WishlistItem } from "../../types";
-
-// ログイン状態をシミュレートするためのフラグ
-const isLoggedIn = true; // 実際のアプリでは適切な認証方法を使用してください
+import { useWishlist } from "../../contexts/WishlistContext";
 
 const WishlistPage = () => {
-  const [wishlist, setWishlist] = useState<WishlistItem[]>([]);
+  const { wishlist } = useWishlist();
 
-  useEffect(() => {
-    const fetchWishlist = async () => {
-      const res = await fetch("/api/wishlist");
-      const data = await res.json();
-      setWishlist(data);
-    };
-
-    fetchWishlist();
-  }, []);
+  if (wishlist.length === 0) {
+    return <div className="container mx-auto p-4">Your wishlist is empty.</div>;
+  }
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Wishlist</h1>
-      {isLoggedIn ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {wishlist.map((item) => (
-            <div key={item.id} className="bg-white p-4 rounded shadow">
-              <Link href={item.link}>
-                <div className="relative w-full h-64">
-                  <Image
-                    src={item.images[0]}
-                    alt={item.title}
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                <div className="mt-4">
-                  <h2 className="text-lg font-bold">{item.title}</h2>
-                  <p className="text-gray-500">{item.price}</p>
-                </div>
-              </Link>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p>Please log in to view your wishlist.</p>
-      )}
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">My Wishlist</h1>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {wishlist.map((product, index) => (
+          <div key={index} className="bg-white p-4 rounded shadow">
+            <Link href={product.link}>
+              <Image
+                src={product.images[0]}
+                alt={product.title}
+                width={200}
+                height={200}
+                className="object-contain"
+              />
+              <h2 className="mt-2 text-lg font-medium">{product.title}</h2>
+              <p className="mt-1 text-gray-700">${product.price.toFixed(2)}</p>
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

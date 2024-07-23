@@ -18,9 +18,9 @@ const Hero = () => {
       </div>
 
       <div className="bg-white mx-auto flex flex-col lg:flex-row flex-wrap w-full justify-evenly">
-        <div className="w-full lg:w-1/2 bg-white text-center p-2">
+        <div className="w-full md:w-full lg:w-1/2 bg-white text-center p-2">
           <Link href="/men">
-            <div className="relative w-full h-96 md:h-[500px] lg:h-[500px]">
+            <div className="relative w-full pb-[100%] md:h-[500px]">
               <Image
                 src="/images/hero1.jpg"
                 alt="Hero Image 1"
@@ -34,15 +34,16 @@ const Hero = () => {
             <p>DIOR AND STONE ISLAND</p>
           </Link>
         </div>
-        <div className="w-full lg:w-1/2 bg-white text-center p-2">
+        <div className="w-full md:w-full lg:w-1/2 bg-white text-center p-2">
           <Link href="/woman">
-            <div className="relative w-full h-96 md:h-[500px] lg:h-[500px]">
+            <div className="relative w-full pb-[100%] md:h-[500px]">
               <Image
                 src="/images/hero2.jpg"
                 alt="Hero Image 2"
                 fill
                 sizes="(max-width: 768px) 100vw, (min-width: 992px) 50vw, 33vw"
                 className="object-contain"
+                quality={100}
               />
             </div>
             <h2 className="mt-4 text-stone-400 text-sm">WOMEN'S FASHION</h2>
