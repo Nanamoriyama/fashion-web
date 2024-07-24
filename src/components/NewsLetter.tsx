@@ -42,7 +42,7 @@ const NewsLetter = () => {
         <div className="font-bold text-sm mb-4 ml-3 md:mb-0 md:text-left">
           EXPLORE MORE
         </div>
-        <div className="font-light text-s p-3 md:flex md:justify-between md:items-center relative gradient-overlay">
+        <div className="font-light text-s md:flex md:justify-between md:items-center relative gradient-overlay">
           {!isAtStart && (
             <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10">
               <FaAngleLeft className="" />

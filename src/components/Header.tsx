@@ -28,8 +28,8 @@ const Header = () => {
 
   return (
     <div className="sticky top-0 bg-white z-50">
-      <div className="flex flex-col justify-evenly p-2 relative">
-        <div className="font-light text-s p-3 md:flex md:justify-between md:items-center relative gradient-overlay">
+      <div className="flex flex-col justify-evenly relative">
+        <div className="font-light text-s p-2 md:flex md:justify-between md:items-center relative gradient-overlay">
           <div className="slider-nav">
             <button
               className="slider-nav-button slider-nav-left"
