@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { CiHeart } from "react-icons/ci";
@@ -20,10 +20,15 @@ interface User {
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false); // マウント状態の管理
   const user = useSelector((state: any) => state.userState.user);
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const router = useRouter();
+
+  useEffect(() => {
+    setIsMounted(true); // コンポーネントがマウントされたことを示す
+  }, []);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -41,6 +46,10 @@ const Navbar = () => {
   const capitalizeFirstLetter = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
+
+  if (!isMounted) {
+    return null; // マウントされるまで何も表示しない
+  }
 
   return (
     <div className="z-9999 flex justify-between items-center p-4">

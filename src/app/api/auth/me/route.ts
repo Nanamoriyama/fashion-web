@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 
-// 環境変数からJWTの秘密鍵を取得
 const JWT_SECRET = process.env.JWT_SECRET || "your_secret_key";
 
 export async function GET(req: NextRequest) {

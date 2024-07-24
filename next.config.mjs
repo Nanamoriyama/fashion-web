@@ -4,11 +4,7 @@ const nextConfig = {
   reactStrictMode: true,
   experimental: {},
   webpack(config, { dev, isServer }) {
-    if (dev) {
-      config.devtool = "source-map";
-    } else {
-      config.devtool = false;
-    }
+    // デフォルトの設定を使用するため、明示的なdevtool設定を削除
     return config;
   },
 };

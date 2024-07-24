@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @import "react-toastify/dist/ReactToastify.css";
+/* globals.css または任意のグローバルスタイルファイルに追加 */
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
 .hide-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
@@ -81,4 +84,48 @@
 
 .slick-dots li.slick-active button:before {
   color: black;
+}
+/* グローバルCSSファイル（例えば、globals.css）に追加 */
+.slider-container {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.slider-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.slider-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-nav-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.slider-item {
+  flex: 0 0 auto;
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+/* モバイル対応のためのレスポンシブデザイン */
+@media (max-width: 768px) {
+  .slider-nav-button {
+    padding: 0 5px; /* ナビゲーションボタンのパディングを小さくする */
+  }
+
+  .slider-item {
+    padding: 0 5px; /* スライダーアイテムのパディングを小さくする */
+  }
 }

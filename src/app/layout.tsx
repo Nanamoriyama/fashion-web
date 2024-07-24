@@ -22,8 +22,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className={`${inter.className} flex flex-col min-h-screen`}>
         <UserProvider>
           <WishlistProvider>
-            {" "}
-            {/* ここにWishlistProviderを追加 */}
             <ClientLayout>{children}</ClientLayout>
           </WishlistProvider>
         </UserProvider>
