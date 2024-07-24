@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -47,19 +46,18 @@ const Login: React.FC = () => {
     <section className="h-screen grid place-items-center">
       <form
         onSubmit={handleSubmit}
-        className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4"
+        className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-6"
       >
-        <h4 className="text-center text-3xl">Login</h4>
+        <h4 className="text-center text-xl">LOG IN</h4>
+        <p className="flex justify-center">To access your account</p>
         <FormInput
           type="email"
-          label="Email"
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <FormInput
           type="password"
-          label="Password"
           name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

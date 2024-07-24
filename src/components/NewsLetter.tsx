@@ -39,7 +39,7 @@ const NewsLetter = () => {
         <hr />
       </div>
       <div className="flex flex-col justify-evenly p-4 relative">
-        <div className="font-bold text-sm mb-4 ml-3 md:mb-0 md:text-left">
+        <div className="font-bold text-sm mb-6 pb-4 ml-3 md:mb-0 md:text-left">
           EXPLORE MORE
         </div>
         <div className="font-light text-s md:flex md:justify-between md:items-center relative gradient-overlay">
@@ -62,7 +62,7 @@ const NewsLetter = () => {
                 { href: "/jewelry", label: "Woman's Fashion Jewelry" },
                 { href: "/kids", label: "Kids & Baby" },
                 { href: "/maison", label: "Maison" },
-                { href: "/jewelry", label: "Jewelry & Timepieces" },
+                { href: "/jewelry", label: "For The Home" },
               ].map((item, index) => (
                 <li key={index} className="relative group">
                   <Link
@@ -71,7 +71,6 @@ const NewsLetter = () => {
                   >
                     {item.label}
                   </Link>
-                  <div className="absolute left-0 right-0 bottom-0 h-[2px] bg-stone-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
                 </li>
               ))}
             </ul>

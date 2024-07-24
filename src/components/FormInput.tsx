@@ -2,14 +2,12 @@ import React from "react";
 
 interface FormInputProps {
   type: string;
-  label: string;
   name: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const FormInput: React.FC<FormInputProps> = ({
-  label,
   name,
   type,
   value,
@@ -17,15 +15,19 @@ const FormInput: React.FC<FormInputProps> = ({
 }) => {
   return (
     <div className="form-control">
-      <label htmlFor={name} className="label">
-        <span className="label-text capitalize">{label}</span>
-      </label>
       <input
         type={type}
         name={name}
         value={value}
         onChange={onChange}
-        className="input input-bordered"
+        className="input input-bordered w-full p-2 border-b border-black focus:outline-none focus:border-black placeholder-black placeholder-opacity-100 text-sm"
+        placeholder={
+          name === "username"
+            ? "*Username"
+            : name === "email"
+            ? "*Email address"
+            : "*Password"
+        }
       />
     </div>
   );

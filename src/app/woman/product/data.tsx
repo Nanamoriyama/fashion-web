@@ -10,7 +10,7 @@ export const products = [
   },
   {
     id: "2",
-    images: ["/forHer/wo3.jpg"],
+    images: ["/forHer/wo3.jpg", "/forHer/wo36.jpg"],
     title: "Petit CD Necklace",
     detail: "Gold-Finish Metal with a White Resin Pearl",
     price: 540, // 価格を数値に変更

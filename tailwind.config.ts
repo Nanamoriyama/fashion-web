@@ -17,8 +17,12 @@ const config: Config = {
         xl: { min: "1259px" }, // Desktop wide.
         "2xl": { min: "1359px" }, // Desktop widescreen.
       },
+      fontFamily: {
+        sans: ["Montserrat", "sans-serif"],
+      },
     },
   },
+  plugins: [],
 };
 
 export default config;

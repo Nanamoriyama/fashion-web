@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../features/cart/cartSlice";
 import { logoutUser } from "../features/user/userSlice";
 import { useQueryClient } from "@tanstack/react-query";
+import { MdOutlineChevronRight } from "react-icons/md";
 
 // User インターフェースを定義
 interface User {
@@ -91,7 +92,7 @@ const Navbar = () => {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-stone-100 z-50 transform ${
+        className={`fixed top-0 right-0 h-full w-64 bg-stone-50 z-50 transform ${
           isDrawerOpen ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 ease-in-out flex flex-col`}
         style={{ top: "0", zIndex: "100" }}
@@ -101,46 +102,53 @@ const Navbar = () => {
         </button>
 
         <ul className="mt-20 flex-grow flex flex-col items-center">
-          <li className="relative group p-4">
+          <li className="relative group p-4 flex justify-between w-full">
             <Link href="/" onClick={toggleDrawer}>
               HOME
             </Link>
+            <MdOutlineChevronRight />
             <div className="absolute left-0 right-0 bottom-0 h-[2px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
           </li>
-          <li className="relative group p-4">
+          <li className="relative group p-4 flex justify-between w-full">
             <Link href="/men" onClick={toggleDrawer}>
               MEN
             </Link>
+            <MdOutlineChevronRight />
             <div className="absolute left-0 right-0 bottom-0 h-[2px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
           </li>
-          <li className="relative group p-4">
+          <li className="relative group p-4 flex justify-between w-full">
             <Link href="/woman" onClick={toggleDrawer}>
               WOMAN
             </Link>
+            <MdOutlineChevronRight />
             <div className="absolute left-0 right-0 bottom-0 h-[2px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
           </li>
-          <li className="relative group p-4">
+          <li className="relative group p-4 flex justify-between w-full">
             <Link href="/bags" onClick={toggleDrawer}>
               BAGS
             </Link>
+            <MdOutlineChevronRight />
             <div className="absolute left-0 right-0 bottom-0 h-[2px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
           </li>
-          <li className="relative group p-4">
+          <li className="relative group p-4 flex justify-between w-full">
             <Link href="/jewelry" onClick={toggleDrawer}>
               JEWELRY
             </Link>
+            <MdOutlineChevronRight />
             <div className="absolute left-0 right-0 bottom-0 h-[2px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
           </li>
-          <li className="relative group p-4">
+          <li className="relative group p-4 flex justify-between w-full">
             <Link href="/kids" onClick={toggleDrawer}>
               KIDS & BABY
             </Link>
+            <MdOutlineChevronRight />
             <div className="absolute left-0 right-0 bottom-0 h-[2px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
           </li>
-          <li className="relative group p-4">
+          <li className="relative group p-4 flex justify-between w-full">
             <Link href="/maison" onClick={toggleDrawer}>
               MAISON
             </Link>
+            <MdOutlineChevronRight />
             <div className="absolute left-0 right-0 bottom-0 h-[2px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
           </li>
 
@@ -154,27 +162,28 @@ const Navbar = () => {
               </button>
             </li>
           )}
+          {!user && (
+            <div className="flex flex-col items-center mb-4 w-full px-4">
+              <span className="font-light mt-4">My Account</span>
+              <button
+                onClick={() => {
+                  router.push("/login");
+                  setIsDrawerOpen(false);
+                }}
+                className="btn btn-primary mt-4 bg-stone-900 text-white rounded-full w-full py-2"
+              >
+                Login
+              </button>
+              <Link
+                href="/register"
+                className="btn btn-secondary mt-2 rounded-full bg-stone-50 border border-stone-900 w-full py-2 text-center"
+                onClick={toggleDrawer}
+              >
+                Register
+              </Link>
+            </div>
+          )}
         </ul>
-        {!user && (
-          <div className="flex flex-col items-center mb-4">
-            <button
-              onClick={() => {
-                router.push("/login");
-                setIsDrawerOpen(false);
-              }}
-              className="btn btn-primary mt-4"
-            >
-              Login
-            </button>
-            <Link
-              href="/register"
-              className="btn btn-secondary mt-2"
-              onClick={toggleDrawer}
-            >
-              Create Account
-            </Link>
-          </div>
-        )}
       </div>
     </div>
   );

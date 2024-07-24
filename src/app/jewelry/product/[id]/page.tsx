@@ -60,11 +60,16 @@ const ProductDetail: React.FC = () => {
   };
 
   return (
-    <div className="p-4">
-      <div className="relative w-full h-96 md:h-[500px]">
+    <div className="p-4 bg-gray-100">
+      {" "}
+      {/* 親要素にbg-gray-100を追加 */}
+      <div className="relative w-full h-96 md:h-[500px] ">
         <Slider {...settings}>
           {product.images.map((image, index) => (
-            <div key={index} className="relative w-full h-96 md:h-[500px]">
+            <div
+              key={index}
+              className="relative w-full h-96 md:h-[500px] bg-gray-100"
+            >
               <Image
                 src={image}
                 alt={`${product.title} ${index + 1}`}

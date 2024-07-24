@@ -1,11 +1,9 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
 import { ReactNode } from "react";
 import ClientLayout from "./ClientLayout";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
-import { WishlistProvider } from "../contexts/WishlistContext"; // 追加
-
-const inter = Inter({ subsets: ["latin"] });
+import { WishlistProvider } from "../contexts/WishlistContext";
+import Head from "next/head";
 
 export const metadata = {
   title: "Luxury fashion website | DIOR",
@@ -19,7 +17,13 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <body className={`${inter.className} flex flex-col min-h-screen`}>
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+      <body className="flex flex-col min-h-screen">
         <UserProvider>
           <WishlistProvider>
             <ClientLayout>{children}</ClientLayout>

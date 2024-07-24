@@ -39,26 +39,23 @@ const Register: React.FC = () => {
     <section className="h-screen grid place-items-center">
       <form
         onSubmit={handleSubmit}
-        className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4"
+        className="card w-96 p-8 bg-base-100 flex flex-col gap-y-4"
       >
-        <h4 className="text-center text-3xl font-bold">Register</h4>
+        <h4 className="text-center text-2xl p-4">Register</h4>
         <FormInput
           type="text"
-          label="Username"
           name="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <FormInput
           type="email"
-          label="Email"
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <FormInput
           type="password"
-          label="Password"
           name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -66,11 +63,11 @@ const Register: React.FC = () => {
         <div className="mt-4">
           <SubmitBtn text="Register" isSubmitting={false} />
         </div>
-        <p className="text-center">
+        <p className="text-center p-4">
           Already a member?
           <Link
             href="/login"
-            className="ml-2 link link-hover link-primary capitalize"
+            className="ml-2 link link-hover link-primary capitalize font-bold"
           >
             login
           </Link>

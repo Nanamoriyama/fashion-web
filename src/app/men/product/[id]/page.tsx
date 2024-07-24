@@ -102,9 +102,9 @@ const ProductDetail: React.FC = () => {
       <hr className="text-stone-400 mt-2" />
       <button
         onClick={handleAddToCart}
-        className="w-full mt-4 px-4 py-2 bg-black text-white rounded-full"
+        className="w-full mt-4 px-4 py-3 text-xs font-light bg-black text-white rounded-full"
       >
-        Add to Cart
+        Add to cart
       </button>
     </div>
   );

@@ -61,7 +61,7 @@ const ProductDetail: React.FC = () => {
 
   return (
     <div className="p-4">
-      <div className="relative w-full h-96 md:h-[500px]">
+      <div className="relative w-full h-96 md:h-[500px] ">
         <Slider {...settings}>
           {product.images.map((image, index) => (
             <div key={index} className="relative w-full h-96 md:h-[500px]">
