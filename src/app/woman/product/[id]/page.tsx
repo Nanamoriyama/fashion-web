@@ -3,7 +3,7 @@ import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useState } from "react";
 import Slider from "react-slick";
-import { products } from "../data"; // ここでproductsデータをインポート
+import { products } from "../../../../data/products"; // ここでproductsデータをインポート
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CiHeart } from "react-icons/ci";
