@@ -52,10 +52,7 @@ body {
   width: 80px;
   z-index: 1;
 }
-.gradient-overlay::before {
-  left: 0;
-  background: linear-gradient(to right, white, transparent);
-}
+
 .gradient-overlay::after {
   right: 0;
   background: linear-gradient(to left, white, transparent);
