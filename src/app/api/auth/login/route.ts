@@ -1,48 +1,42 @@
 import { NextRequest, NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import { getUsers } from "../userStorage";
-
-const JWT_SECRET = process.env.JWT_SECRET || "your_secret_key";
-
-interface User {
-  username: string;
-  email: string;
-  password: string;
-}
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../../../firebaseConfig"; // パスを適切に修正
 
 export async function POST(req: NextRequest) {
   try {
     const { email, password } = await req.json();
+    console.log("Received data:", { email, password });
 
-    const users = getUsers();
-    const user = users.find((u: User) => u.email === email);
-    if (!user) {
+    if (!email || !password) {
+      console.log("Missing required fields");
       return NextResponse.json(
-        { error: "Invalid credentials" },
-        { status: 401 }
+        { error: "Missing required fields" },
+        { status: 400 }
       );
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-      return NextResponse.json(
-        { error: "Invalid credentials" },
-        { status: 401 }
-      );
-    }
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
 
-    const token = jwt.sign({ email: user.email }, JWT_SECRET, {
-      expiresIn: "1h",
-    });
-
-    return NextResponse.json({
-      message: "Logged in successfully",
-      token,
-      user: { email: user.email, username: user.username },
-    });
+    return NextResponse.json({ user });
   } catch (error) {
-    console.error(`Error during login: ${(error as Error).message}`);
-    return NextResponse.json({ error: "An error occurred" }, { status: 500 });
+    console.log("Error during login:", (error as Error).message);
+    if ((error as Error).message.includes("auth/wrong-password")) {
+      return NextResponse.json(
+        { error: "Incorrect password" },
+        { status: 400 }
+      );
+    }
+    if ((error as Error).message.includes("auth/user-not-found")) {
+      return NextResponse.json({ error: "User not found" }, { status: 400 });
+    }
+    return NextResponse.json(
+      { error: (error as Error).message },
+      { status: 400 }
+    );
   }
 }

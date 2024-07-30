@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { ReactNode } from "react";
 import ReactQueryProvider from "./providers/ReactQueryProvider";
+import { SnackbarProvider } from "notistack";
 import { ToastContainer } from "react-toastify";
 
 interface ClientLayoutProps {
@@ -16,10 +17,12 @@ const ClientLayout: React.FC<ClientLayoutProps> = ({ children }) => {
   return (
     <Provider store={store}>
       <ReactQueryProvider>
-        <Navbar />
-        <div className="flex-grow">{children}</div>
-        <ToastContainer />
-        <Footer />
+        <SnackbarProvider maxSnack={3}>
+          <Navbar />
+          <div className="flex-grow">{children}</div>
+          <ToastContainer />
+          <Footer />
+        </SnackbarProvider>
       </ReactQueryProvider>
     </Provider>
   );

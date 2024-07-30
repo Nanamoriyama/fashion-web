@@ -1,51 +1,32 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+
+import React from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+import { useRouter } from "next/navigation";
 
-const Profile = () => {
-  const [user, setUser] = useState<any>(null);
+const ProfilePage: React.FC = () => {
+  const user = useSelector((state: any) => state.userState.user);
   const router = useRouter();
-  const token = useSelector((state: RootState) => state.userState.user?.token);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      if (!token) {
-        router.push("/login");
-        return;
-      }
-
-      try {
-        const res = await fetch("/api/auth/me", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const data = await res.json();
-        if (res.ok) {
-          setUser(data.user);
-        } else {
-          console.error("Failed to fetch user:", data.error);
-          router.push("/login");
-        }
-      } catch (err) {
-        console.error("An error occurred while fetching the user:", err);
-        router.push("/login");
-      }
-    };
-
-    fetchUser();
-  }, [token, router]);
-
-  if (!user) return <p>Loading...</p>;
+  if (!user) {
+    // ログインしていない場合、ログインページへリダイレクト
+    router.push("/login");
+    return null;
+  }
 
   return (
-    <div>
-      <h1>Profile</h1>
-      <pre>{JSON.stringify(user, null, 2)}</pre>
+    <div className="container mx-auto p-8">
+      <h1 className="text-2xl font-bold mb-4">Profile</h1>
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <p className="text-lg">
+          <strong>Username:</strong> {user.username}
+        </p>
+        <p className="text-lg">
+          <strong>Email:</strong> {user.email}
+        </p>
+      </div>
     </div>
   );
 };
 
-export default Profile;
+export default ProfilePage;

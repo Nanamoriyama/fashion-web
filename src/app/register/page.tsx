@@ -2,21 +2,56 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { FormInput, SubmitBtn } from "../../components";
 import customFetch from "../../utils/customFetch";
-import { toast } from "react-toastify";
-import Link from "next/link";
+import { useSnackbar } from "notistack";
 
 const Register: React.FC = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateForm = (): boolean => {
+    if (!username || !email || !password) {
+      enqueueSnackbar("All fields are required", { variant: "error" });
+      return false;
+    }
+    if (!validateEmail(email)) {
+      enqueueSnackbar("Please enter a valid email address", {
+        variant: "error",
+      });
+      return false;
+    }
+    if (password.length < 6) {
+      enqueueSnackbar("Password must be at least 6 characters long", {
+        variant: "error",
+      });
+      return false;
+    }
+    return true;
+  };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
+    if (!validateForm()) {
+      return;
+    }
+
     try {
+      console.log("Sending registration request:", {
+        username,
+        email,
+        password,
+      });
       const response = await customFetch.post("/api/auth/register", {
         username,
         email,
@@ -24,14 +59,18 @@ const Register: React.FC = () => {
       });
 
       if (response.ok) {
-        toast.success("Account created successfully");
+        enqueueSnackbar("Account created successfully", { variant: "success" });
         router.push("/login"); // ログインページにリダイレクト
       } else {
         const errorData = await response.json();
-        toast.error(errorData.message || "Registration failed");
+        enqueueSnackbar(errorData.error || "Registration failed", {
+          variant: "error",
+        });
       }
     } catch (error) {
-      toast.error("An error occurred. Please try again.");
+      enqueueSnackbar("An error occurred. Please try again.", {
+        variant: "error",
+      });
     }
   };
 

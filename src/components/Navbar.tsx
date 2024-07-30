@@ -21,14 +21,14 @@ interface User {
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false); // マウント状態の管理
+  const [isMounted, setIsMounted] = useState(false);
   const user = useSelector((state: any) => state.userState.user);
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const router = useRouter();
 
   useEffect(() => {
-    setIsMounted(true); // コンポーネントがマウントされたことを示す
+    setIsMounted(true);
   }, []);
 
   const toggleDrawer = () => {
@@ -43,11 +43,6 @@ const Navbar = () => {
     setIsDrawerOpen(false);
   };
 
-  // 関数をここに追加
-  const capitalizeFirstLetter = (string: string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
-
   if (!isMounted) {
     return null; // マウントされるまで何も表示しない
   }
@@ -59,9 +54,10 @@ const Navbar = () => {
       </div>
       <div className="flex items-center space-x-2 sm:space-x-4">
         {user && (
-          <span className="font-bold text-sm">
-            {capitalizeFirstLetter(user.username)}
-          </span>
+          <>
+            <CiHeart className="text-2xl w-6 flex-shrink-0" />
+            <span className="font-bold text-sm">{user.username}</span>
+          </>
         )}
         <ul className="flex space-x-2">
           <li className="relative group">
@@ -100,7 +96,6 @@ const Navbar = () => {
         <button onClick={toggleDrawer} className="absolute top-4 left-4">
           <IoMdClose className="text-2xl" />
         </button>
-
         <ul className="mt-20 flex-grow flex flex-col items-center">
           <li className="relative group p-4 flex justify-between w-full">
             <Link href="/" onClick={toggleDrawer}>
@@ -152,7 +147,7 @@ const Navbar = () => {
             <div className="absolute left-0 right-0 bottom-0 h-[2px] bg-black scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
           </li>
 
-          {user && (
+          {user ? (
             <li className="relative group p-4">
               <button
                 className="btn btn-xs btn-outline hover:text-stone-400"
@@ -161,8 +156,7 @@ const Navbar = () => {
                 Logout
               </button>
             </li>
-          )}
-          {!user && (
+          ) : (
             <div className="flex flex-col items-center mb-4 w-full px-4">
               <span className="font-light mt-4">My Account</span>
               <button
