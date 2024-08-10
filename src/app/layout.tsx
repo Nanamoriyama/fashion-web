@@ -6,7 +6,7 @@ import { WishlistProvider } from "../contexts/WishlistContext";
 import Head from "next/head";
 
 export const metadata = {
-  title: "Luxury fashion website | DIOR",
+  title: "Luxury fashion website | This is not a real shop",
   description: "Nana's fashion website",
 };
 

@@ -8,7 +8,11 @@ const WishlistPage = () => {
   const { wishlist } = useWishlist();
 
   if (wishlist.length === 0) {
-    return <div className="container mx-auto p-4">Your wishlist is empty.</div>;
+    return (
+      <div className="container mx-auto p-8 flex justify-center text-lg font-thin">
+        Your wishlist is empty.
+      </div>
+    );
   }
 
   return (

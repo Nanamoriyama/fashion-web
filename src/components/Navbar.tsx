@@ -48,9 +48,17 @@ const Navbar = () => {
   }
 
   return (
-    <div className="z-9999 flex justify-between items-center p-4">
-      <div className="relative w-24 h-8">
-        <Image src="/images/logo.svg" alt="DIOR Logo" fill />
+    <div className="z-9999 flex justify-between items-center p-2">
+      <div className="relative w-24 h-14">
+        <Link href="/" passHref>
+          <Image
+            src="/images/logo.png"
+            alt="Logo"
+            height={100}
+            width={100}
+            className="m-0 p-0 cursor-pointer"
+          />
+        </Link>
       </div>
       <div className="flex items-center space-x-2 sm:space-x-4">
         {user && (

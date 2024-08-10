@@ -37,7 +37,7 @@ const Cart: React.FC = () => {
 
   return (
     <div className="p-2">
-      <hr />
+      <hr className="mt-3" />
       <h1 className="flex justify-center font-light text-2xl mt-6 text-stone-700">
         MY SHOPPING BAG
       </h1>
