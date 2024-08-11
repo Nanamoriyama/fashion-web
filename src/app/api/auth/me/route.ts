@@ -1,29 +1,79 @@
 import { NextRequest, NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../../../firebaseConfig"; // パスを適切に修正
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 
-const JWT_SECRET = process.env.JWT_SECRET || "your_secret_key";
+const db = getFirestore();
 
-export async function GET(req: NextRequest) {
-  const authHeader = req.headers.get("Authorization");
+const validateEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
 
-  if (!authHeader) {
-    return NextResponse.json(
-      { error: "Authorization header missing" },
-      { status: 401 }
-    );
-  }
-
-  const token = authHeader.split(" ")[1];
-
-  if (!token) {
-    return NextResponse.json({ error: "Token missing" }, { status: 401 });
-  }
-
+export async function POST(req: NextRequest) {
   try {
-    const decoded = jwt.verify(token, JWT_SECRET);
-    return NextResponse.json({ user: decoded });
+    const { email, password, name } = await req.json();
+    console.log("Received data:", { email, password, name });
+
+    if (!email || !password || !name) {
+      console.log("Missing required fields");
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
+    }
+
+    if (!validateEmail(email)) {
+      console.log("Invalid email address");
+      return NextResponse.json(
+        { error: "Please enter a valid email address" },
+        { status: 400 }
+      );
+    }
+
+    if (password.length < 6) {
+      console.log("Password too short");
+      return NextResponse.json(
+        { error: "Password must be at least 6 characters long" },
+        { status: 400 }
+      );
+    }
+
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
+
+    console.log("User created:", user);
+
+    // Firestore へのデータ保存
+    await setDoc(doc(db, "users", user.uid), {
+      name,
+      email,
+    });
+
+    console.log("User data saved to Firestore");
+
+    return NextResponse.json({
+      user: { uid: user.uid, email: user.email, name },
+    });
   } catch (error) {
-    console.error("JWT verification failed:", error);
-    return NextResponse.json({ error: "Invalid token" }, { status: 401 });
+    console.log("Error during registration:", (error as Error).message);
+
+    // Firebase エラーコードに基づくエラーハンドリング
+    if ((error as Error).message.includes("auth/email-already-in-use")) {
+      return NextResponse.json(
+        { error: "Email is already in use" },
+        { status: 400 }
+      );
+    }
+
+    // 他のエラーの場合
+    return NextResponse.json(
+      { error: "An error occurred during registration" },
+      { status: 500 } // サーバーエラーの場合は 500 を返す
+    );
   }
 }

@@ -16,7 +16,7 @@ import { MdOutlineChevronRight } from "react-icons/md";
 // User インターフェースを定義
 interface User {
   email: string;
-  username: string;
+  name: string;
 }
 
 const Navbar = () => {
@@ -63,8 +63,7 @@ const Navbar = () => {
       <div className="flex items-center space-x-2 sm:space-x-4">
         {user && (
           <>
-            <CiHeart className="text-2xl w-6 flex-shrink-0" />
-            <span className="font-bold text-sm">{user.username}</span>
+            <span className="font-bold text-sm">{user.name}</span>
           </>
         )}
         <ul className="flex space-x-2">

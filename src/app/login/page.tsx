@@ -3,12 +3,11 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { FormInput, SubmitBtn } from "../../components";
 import { useSnackbar } from "notistack";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../features/user/userSlice";
-import { auth } from "../../../firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../firebaseConfig"; // 適切なパスに修正
+import { loginUser } from "../../features/user/userSlice"; // Reduxのアクション
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -57,11 +56,11 @@ const Login: React.FC = () => {
         loginUser({
           user: {
             id: user.uid,
-            name: user.displayName || "User",
+            name: user.displayName || "User", // name プロパティを使用
             email: user.email!,
-            token: "dummy-token",
+            token: "dummy-token", // 実際にはFirebaseからトークンを取得することが推奨される
           },
-          jwt: "dummy-jwt", // 実際にはFirebaseからトークンを取得して設定
+          jwt: "dummy-jwt", // 実際にはFirebaseからトークンを取得して設定する
         })
       );
 
@@ -82,20 +81,26 @@ const Login: React.FC = () => {
         className="card w-96 p-8 bg-base-100 flex flex-col gap-y-4"
       >
         <h4 className="text-center text-2xl p-4">Login</h4>
-        <FormInput
+        <input
           type="email"
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          className="input"
         />
-        <FormInput
+        <input
           type="password"
           name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          className="input"
         />
         <div className="mt-4">
-          <SubmitBtn text="Login" isSubmitting={false} />
+          <button type="submit" className="btn btn-primary">
+            Login
+          </button>
         </div>
         <p className="text-center p-4">
           Not a member yet?

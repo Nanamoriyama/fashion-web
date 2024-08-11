@@ -22,8 +22,8 @@ const FormInput: React.FC<FormInputProps> = ({
         onChange={onChange}
         className="input input-bordered w-full p-2 border-b border-black focus:outline-none focus:border-black placeholder-black placeholder-opacity-100 text-sm"
         placeholder={
-          name === "username"
-            ? "*Username"
+          name === "name" // ここを修正
+            ? "*Name" // ユーザー名のplaceholder
             : name === "email"
             ? "*Email address"
             : "*Password"

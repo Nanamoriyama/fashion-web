@@ -8,7 +8,7 @@ import customFetch from "../../utils/customFetch";
 import { useSnackbar } from "notistack";
 
 const Register: React.FC = () => {
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -20,7 +20,7 @@ const Register: React.FC = () => {
   };
 
   const validateForm = (): boolean => {
-    if (!username || !email || !password) {
+    if (!name || !email || !password) {
       enqueueSnackbar("All fields are required", { variant: "error" });
       return false;
     }
@@ -48,12 +48,13 @@ const Register: React.FC = () => {
 
     try {
       console.log("Sending registration request:", {
-        username,
+        name,
         email,
         password,
       });
+
       const response = await customFetch.post("/api/auth/register", {
-        username,
+        name,
         email,
         password,
       });
@@ -63,11 +64,16 @@ const Register: React.FC = () => {
         router.push("/login"); // ログインページにリダイレクト
       } else {
         const errorData = await response.json();
-        enqueueSnackbar(errorData.error || "Registration failed", {
-          variant: "error",
-        });
+        console.error("Registration failed:", errorData);
+        enqueueSnackbar(
+          `Registration failed: ${errorData.error || "Unknown error"}`,
+          {
+            variant: "error",
+          }
+        );
       }
     } catch (error) {
+      console.error("An error occurred during registration:", error);
       enqueueSnackbar("An error occurred. Please try again.", {
         variant: "error",
       });
@@ -83,9 +89,9 @@ const Register: React.FC = () => {
         <h4 className="text-center text-2xl p-4">Register</h4>
         <FormInput
           type="text"
-          name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
         <FormInput
           type="email"

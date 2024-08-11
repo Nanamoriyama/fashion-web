@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import { User } from "../../types"; // src/types.ts から User 型をインポート
 
@@ -18,6 +18,19 @@ const initialState: UserState = {
   user: getUserFromLocalStorage(),
 };
 
+// fetchUserProfile アクションの作成
+export const fetchUserProfile = createAsyncThunk(
+  "user/fetchUserProfile",
+  async (_, thunkAPI) => {
+    try {
+      const user = getUserFromLocalStorage(); // ローカルストレージからユーザーを取得
+      return user; // ユーザーを返す
+    } catch (error) {
+      return thunkAPI.rejectWithValue("Failed to fetch user profile");
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -36,6 +49,14 @@ const userSlice = createSlice({
       }
       toast.success("Logged out successfully");
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchUserProfile.fulfilled, (state, action) => {
+      state.user = action.payload as User;
+    });
+    builder.addCase(fetchUserProfile.rejected, (state, action) => {
+      toast.error(action.payload as string);
+    });
   },
 });
 

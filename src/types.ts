@@ -14,7 +14,8 @@ export interface WishlistItem {
 // User interface
 export interface User {
   id: string;
-  name: string;
+  name: string; // 既存のプロパティ
+
   email: string;
   token: string;
 }
